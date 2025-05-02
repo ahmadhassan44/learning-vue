@@ -5,8 +5,11 @@
   <p v-if="status === 'true'">{{ name }} is active</p>
   <p v-else-if="status === 'false'">{{ name }} is inactive</p>
   <p v-else>{{ name }}'s status is unknown</p>
-  <li v-for="task in tasks" :key="task">
-    {{ task }}
+  <li v-for="(task, index) in tasks" :key="task">
+    <span>
+      {{ task }}
+    </span>
+    <button @click="deleteTask(index)">-</button>
   </li>
   <a :href="link" target="_blank">Google</a>
   <button @click="toggleActivity" style="display: block">
@@ -20,7 +23,7 @@
   </form>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 const name = "John Doe";
@@ -38,5 +41,8 @@ const toggleActivity = () => {
 const addTask = () => {
   if (newTask.value !== "") tasks.value.push(newTask.value);
   newTask.value = "";
+};
+const deleteTask = (index: number) => {
+  tasks.value.splice(index, 1);
 };
 </script>
