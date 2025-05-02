@@ -14,28 +14,18 @@
   </button>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
 
-export default {
-  setup() {
-    const name = "John Doe";
-    const status = ref("true");
-    const tasks = ["Task 1", "Task 2", "Task 3", "Task 4"];
+const name = "John Doe";
+const status = ref("true");
+const tasks = ["Task 1", "Task 2", "Task 3", "Task 4"];
 
-    const toggleActivity = () => {
-      if (status.value === "true") {
-        status.value = "false";
-      } else {
-        status.value = "true";
-      }
-    };
-    return {
-      name,
-      status,
-      tasks,
-      toggleActivity,
-    };
-  },
+const toggleActivity = () => {
+  if (status.value === "true") {
+    status.value = "false";
+  } else {
+    status.value = "true";
+  }
 };
 </script>
