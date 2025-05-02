@@ -15,17 +15,19 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
   setup() {
     const name = "John Doe";
-    const status = "true";
+    const status = ref("true");
     const tasks = ["Task 1", "Task 2", "Task 3", "Task 4"];
 
     const toggleActivity = () => {
-      if (this.status === "true") {
-        this.status = "false";
+      if (status.value === "true") {
+        status.value = "false";
       } else {
-        this.status = "true";
+        status.value = "true";
       }
     };
     return {
