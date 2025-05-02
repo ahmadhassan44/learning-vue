@@ -16,22 +16,24 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: "John Doe",
-      status: "true",
-      tasks: ["Task 1", "Task 2", "Task 3", "Task 4"],
-      link: "https://google.com",
-    };
-  },
-  methods: {
-    toggleActivity() {
+  setup() {
+    const name = "John Doe";
+    const status = "true";
+    const tasks = ["Task 1", "Task 2", "Task 3", "Task 4"];
+
+    const toggleActivity = () => {
       if (this.status === "true") {
         this.status = "false";
       } else {
         this.status = "true";
       }
-    },
+    };
+    return {
+      name,
+      status,
+      tasks,
+      toggleActivity,
+    };
   },
 };
 </script>
