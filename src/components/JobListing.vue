@@ -7,7 +7,15 @@
       </div>
 
       <div class="mb-5">
-        {{ job.description }}
+        <div>
+          {{ effectiveDesc }}
+        </div>
+        <button
+          @click="toggleDescription"
+          class="text-green-500 hover:text-green-600 text-sm"
+        >
+          {{ showFullDesc ? "Show less" : "Show more" }}
+        </button>
       </div>
 
       <h3 class="text-green-500 mb-2">{{ job.salary }}</h3>
@@ -30,8 +38,19 @@
   </div>
 </template>
 <script setup>
-import { defineProps } from "vue";
-defineProps({
-  job: Map,
+import { defineProps, computed, ref } from "vue";
+const props = defineProps({
+  job: Object,
 });
+const showFullDesc = ref(false);
+const effectiveDesc = computed(() => {
+  if (!showFullDesc.value) {
+    return props.job.description.substring(0, 90) + "...";
+  } else {
+    return props.job.description;
+  }
+});
+const toggleDescription = () => {
+  showFullDesc.value = !showFullDesc.value;
+};
 </script>
