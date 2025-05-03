@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <Hero />
+  <Hero title="Are you a vue dev?" subtitle="We have got you covered!" />
 </template>
 
 <script setup>
