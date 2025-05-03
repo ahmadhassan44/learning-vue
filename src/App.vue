@@ -2,7 +2,7 @@
   <Navbar />
   <Hero title="Are you a vue dev?" subtitle="We have got you covered!" />
   <HomeCard />
-  <JobListings />
+  <JobListings limit="4" showButton="true" />
 </template>
 
 <script setup>
