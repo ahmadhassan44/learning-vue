@@ -22,12 +22,11 @@
   </section>
 </template>
 <script setup>
-import { defineProps } from "vue";
-import jobsData from "@/jobs.json";
-import { ref } from "vue";
+import { defineProps, onMounted, ref, reactive, ErrorCodes } from "vue";
 import JobListing from "./JobListing.vue";
 import { RouterLink } from "vue-router";
-const jobs = ref(jobsData);
+import axios from "axios";
+const jobs = ref([]);
 defineProps({
   limit: {
     type: Number,
@@ -36,5 +35,13 @@ defineProps({
     type: Boolean,
     default: false,
   },
+});
+onMounted(async () => {
+  try {
+    const response = await axios.get("http://localhost:8000/jobs");
+    jobs.value = response.data;
+  } catch (error) {
+    console.log("Error Fetching jobs:", error);
+  }
 });
 </script>
